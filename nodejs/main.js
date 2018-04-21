@@ -14,9 +14,18 @@ World.setProvider(provider);
 
 // Use Truffle as usual
 World.deployed().then(function(instance) {
+  //console.log(World);
+  /*var event = instance.print();
+  console.log(event)
+  //console.log("listening for events on ", contractAddress)
+  // watch for changes
+  event.watch(function(error, result){ //This is where events can trigger changes in UI
+    
+  });*/
+
   return instance.getTestVar.call()
 }).then(function(result) {
-    console.log(result);
+    console.log(result, result.logs);
 
 }, function(error) {
     console.log(error);
