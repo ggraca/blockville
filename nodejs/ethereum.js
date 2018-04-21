@@ -29,7 +29,7 @@ World.deployed().then(function(instance) {
 
 function parseHex(a){
   a = parseInt(a, 16);
-  if (a > 2**31) {
+  if (a > 2**31 - 1) {
      a = a - 4294967296;
   }
   return a;
