@@ -22,8 +22,9 @@ public class Wrapper {
 public class GenerateWorld : MonoBehaviour {
 
 	public GameObject defaultPrefab;
-	public GameObject greenBorderPrefab;
 	public GameObject greyBorderPrefab;
+	public GameObject greenBorderPrefab;
+	public GameObject redBorderPrefab;
 	public List<GameObject> prefabs = new List<GameObject>();
 	public string url;
 	public float refreshCooldown = 10f;
@@ -32,28 +33,12 @@ public class GenerateWorld : MonoBehaviour {
 	public Game game;
 	public int tileWidth = 16;
 	public int tileSpacing = 4;
-	public int gameWidth = 25;
-	public int gameHeight = 25;
 	public Text fundsTxt;
 	
 	void Start () {
 		game = game.GetComponent<Game>();
 		world = new Hashtable();
 		nextCall = Time.time + refreshCooldown;
-		
-		/*
-		for(int x = -gameWidth; x<=gameWidth; x++){
-			for(int y = -gameHeight; y<=gameHeight; y++){
-				Tile t = new Tile();
-				t.x = x;
-				t.y = y;
-				t.owner = "";
-				t.building = 0;
-				GameObject tile = GenerateTile(t);
-				Vector2 pos = new Vector2(x, y);
-				world[hash(pos)] = tile;
-			}
-		}*/
 		
 		StartCoroutine(GetWorld());
 	}
@@ -77,14 +62,12 @@ public class GenerateWorld : MonoBehaviour {
 		yield return request.SendWebRequest();
 
 		string s = request.downloadHandler.text;
-		//Debug.Log(s);
 		Wrapper wrapper = JsonUtility.FromJson<Wrapper>(s);
 
 		for(int i = 0; i < wrapper.tiles.Count; i++){
 			int id = wrapper.tiles[i].id;
 			int x = wrapper.tiles[i].x;
 			int y = wrapper.tiles[i].y;
-			//Debug.Log(wrapper.tiles[i].x + " " + wrapper.tiles[i].y + " " + wrapper.tiles[i].id);
 			Vector2 pos = new Vector2(x, y);
 
 			if(world[hash(pos)] != null){
@@ -116,15 +99,19 @@ public class GenerateWorld : MonoBehaviour {
 
 		// Add ownership identifier
 		border_p = greyBorderPrefab;
-		if(game.username != "" && game.username == tile.owner){
-			border_p = greenBorderPrefab;
+		if(tile.owner != ""){
+			if(game.username != "" && game.username == tile.owner){
+				border_p = greenBorderPrefab;
+			} else{
+				border_p = redBorderPrefab;
+			}
 		}
 
 		border = Instantiate(border_p, new Vector3(x, 0, z), Quaternion.identity);
 		go = Instantiate(p, new Vector3(x, 0, z), Quaternion.identity);
 		TileObject to = go.GetComponent<TileObject>();
 		to.tileProperties = tile;
-		//go.transform.Rotate(0, rotationMultiplier*90, 0);
+		go.transform.Rotate(0, 180, 0);
 		border.transform.parent = go.transform;
 		
 		return go;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571343, b: 0.30692208, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -113,6 +113,117 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &93495418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 93495419}
+  - component: {fileID: 93495422}
+  - component: {fileID: 93495421}
+  - component: {fileID: 93495420}
+  m_Layer: 5
+  m_Name: Mine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &93495419
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93495418}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 253623845}
+  m_Father: {fileID: 1513771999}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -68, y: -45}
+  m_SizeDelta: {x: 64, y: 64}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &93495420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93495418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_HighlightedColor: {r: 0.24264705, g: 0.24264705, b: 0.24264705, a: 1}
+    m_PressedColor: {r: 0.33088237, g: 0.33088237, b: 0.33088237, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 5
+    m_FadeDuration: 0.5
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 93495421}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &93495421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93495418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &93495422
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93495418}
 --- !u!1 &123434282
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +291,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Forest
+  m_Text: Sawmill
 --- !u!222 &123434285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -205,20 +316,94 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultPrefab: {fileID: 1671061826565688, guid: b25986df76299441f820fea25ee2c651,
     type: 2}
-  greenBorderPrefab: {fileID: 100002, guid: aa45ad9515b0042338a1d266ce7eb927, type: 3}
   greyBorderPrefab: {fileID: 100002, guid: 081d275b36f204b5187c35093e078c76, type: 3}
+  greenBorderPrefab: {fileID: 100002, guid: aa45ad9515b0042338a1d266ce7eb927, type: 3}
+  redBorderPrefab: {fileID: 100002, guid: b724ee095ae844da5ae91ea43912022a, type: 3}
   prefabs:
   - {fileID: 1671061826565688, guid: b25986df76299441f820fea25ee2c651, type: 2}
   - {fileID: 1416123986717994, guid: 0a99d3c8e206d4bce89911571f8c5941, type: 2}
   - {fileID: 1599057427648122, guid: d9aff3b71715549e88cabeccc07fe3d3, type: 2}
-  url: http://483027b3.ngrok.io
-  refreshCooldown: 3
+  - {fileID: 1783976757498712, guid: 3fc9bf99cbb744137af7049599dd6c40, type: 2}
+  url: http://349c5487.ngrok.io
+  refreshCooldown: 0.5
   game: {fileID: 1845399824}
   tileWidth: 16
   tileSpacing: 1
-  gameWidth: 25
-  gameHeight: 25
   fundsTxt: {fileID: 642888077}
+--- !u!1 &253623844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 253623845}
+  - component: {fileID: 253623847}
+  - component: {fileID: 253623846}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &253623845
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253623844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 93495419}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &253623846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253623844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Mine
+--- !u!222 &253623847
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253623844}
 --- !u!1 &300018373
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +471,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Barn
+  m_Text: 'Farm
+
+'
 --- !u!222 &300018376
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -412,10 +599,10 @@ RectTransform:
   m_Father: {fileID: 1845399823}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -123, y: 0}
-  m_SizeDelta: {x: 250, y: 0}
+  m_AnchoredPosition: {x: -125, y: -309}
+  m_SizeDelta: {x: 250, y: 618}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &385582667
 MonoBehaviour:
@@ -462,6 +649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyBtn: {fileID: 1774179558}
+  farmBtn: {fileID: 1150496333}
+  forestBtn: {fileID: 1736123487}
+  mineBtn: {fileID: 93495420}
   game: {fileID: 1845399824}
 --- !u!1 &568491284
 GameObject:
@@ -1102,7 +1292,7 @@ GameObject:
   - component: {fileID: 1150496334}
   - component: {fileID: 1150496333}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Woods
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1421,6 +1611,7 @@ Transform:
   m_Children:
   - {fileID: 1150496332}
   - {fileID: 1736123486}
+  - {fileID: 93495419}
   m_Father: {fileID: 385582666}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1465,7 +1656,7 @@ GameObject:
   - component: {fileID: 1736123488}
   - component: {fileID: 1736123487}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Farm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
