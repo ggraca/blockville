@@ -44,14 +44,10 @@ function decodeIntList(s){
   return l;
 }
 
-function getWorld(data, callback) {
+function getWorld(callback) {
   console.log("everything ok here");
-  username = "";
-  if('username' in data){
-    username = data.username;
-  }
 
-  world.getWorld.call(username).then(
+  world.getWorld.call().then(
     function(result){
       var tiles = [];
       var l = decodeIntList(result[0]);
@@ -73,7 +69,7 @@ function getWorld(data, callback) {
         });
       }
       console.log(tiles);
-      callback(tiles, result[2]);
+      callback(tiles);
     });
 }
 
@@ -92,9 +88,16 @@ function signIn(data) {
   world.signIn(data.username, {from: account, gas:3000000});
 }
 
+function getMoney(data, callback) {
+  world.getMoney.call(data.username).then(function(res){
+    callback(res);
+  });
+}
+
 module.exports = {
   "occupyTile": occupyTile,
   "getWorld": getWorld,
   "build": build,
-  "signIn": signIn
-}
+  "signIn": signIn,
+  "getMoney": getMoney
+};
