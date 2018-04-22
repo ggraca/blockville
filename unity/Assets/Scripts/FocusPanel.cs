@@ -8,12 +8,14 @@ public class FocusPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	public Button buyBtn;
 	public Button farmBtn;
 	public Button forestBtn;
+	public Button mineBtn;
 	public Game game;
 
     void Start(){
 		buyBtn.onClick.AddListener(ActionBuy);
 		farmBtn.onClick.AddListener(ActionBuyFarm);
 		forestBtn.onClick.AddListener(ActionBuyForest);
+		mineBtn.onClick.AddListener(ActionBuyMine);
 	}
 
 	public void OnPointerEnter(PointerEventData eventData){
@@ -34,6 +36,10 @@ public class FocusPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	
 	public void ActionBuyFarm(){
 		StartCoroutine(game.buildTile(2));
+	}
+
+	public void ActionBuyMine(){
+		StartCoroutine(game.buildTile(3));
 	}
 
 }
