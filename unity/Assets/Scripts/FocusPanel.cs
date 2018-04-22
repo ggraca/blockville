@@ -12,17 +12,17 @@ public class FocusPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Start(){
 		buyBtn.onClick.AddListener(ActionBuy);
+		farmBtn.onClick.AddListener(ActionBuyFarm);
+		forestBtn.onClick.AddListener(ActionBuyForest);
 	}
 
-	public void OnPointerEnter(PointerEventData eventData)
-    {
+	public void OnPointerEnter(PointerEventData eventData){
 		game.hoveringUi(true);
-    }
+  }
 
-	public void OnPointerExit(PointerEventData eventData)
-    {
+	public void OnPointerExit(PointerEventData eventData){
 		game.hoveringUi(false);
-    }
+  }
 
 	public void ActionBuy(){
 		StartCoroutine(game.buyTile());
