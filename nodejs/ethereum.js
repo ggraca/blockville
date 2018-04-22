@@ -44,10 +44,14 @@ function decodeIntList(s){
   return l;
 }
 
-function getWorld(callback) {
+function getWorld(data, callback) {
   console.log("everything ok here");
+  username = "";
+  if('username' in data){
+    username = data.username;
+  }
 
-  world.getWorld.call().then(
+  world.getWorld.call(username).then(
     function(result){
       var tiles = [];
       var l = decodeIntList(result[0]);
@@ -84,8 +88,13 @@ function build(data) {
   world.build(data.username, data.id, data.building, {from: account, gas:3000000});
 }
 
+function signIn(data) {
+  world.signIn(data.username, {from: account, gas:3000000});
+}
+
 module.exports = {
   "occupyTile": occupyTile,
   "getWorld": getWorld,
-  "build": build
+  "build": build,
+  "signIn": signIn
 }

@@ -1,3 +1,8 @@
+curl -d '{"username":"michel"}' -H "Content-Type: application/json" -X POST http://localhost:3000/signIn
+curl -d '{"username":"graca"}' -H "Content-Type: application/json" -X POST http://localhost:3000/signIn
+curl -d '{"username":"ines"}' -H "Content-Type: application/json" -X POST http://localhost:3000/signIn
+sleep 3
+
 curl -d '{"username":"michel", "x":-1, "y":2}' -H "Content-Type: application/json" -X POST http://localhost:3000/occupyTile
 curl -d '{"username":"michel", "x":-1, "y":1}' -H "Content-Type: application/json" -X POST http://localhost:3000/occupyTile
 curl -d '{"username":"michel", "x":0, "y":1}' -H "Content-Type: application/json" -X POST http://localhost:3000/occupyTile
