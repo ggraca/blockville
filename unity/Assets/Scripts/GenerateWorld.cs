@@ -40,7 +40,8 @@ public class GenerateWorld : MonoBehaviour {
 		game = game.GetComponent<Game>();
 		world = new Hashtable();
 		nextCall = Time.time + refreshCooldown;
-
+		
+		/*
 		for(int x = -gameWidth; x<=gameWidth; x++){
 			for(int y = -gameHeight; y<=gameHeight; y++){
 				Tile t = new Tile();
@@ -52,7 +53,7 @@ public class GenerateWorld : MonoBehaviour {
 				Vector2 pos = new Vector2(x, y);
 				world[hash(pos)] = tile;
 			}
-		}
+		}*/
 		
 		StartCoroutine(GetWorld());
 	}
