@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65114984828913792}
   - component: {fileID: 23537329877584012}
   m_Layer: 2
-  m_Name: SelectionBox
+  m_Name: HoverBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c24ec9221638e45fca80a9c6e922f1d0, type: 2}
+  - {fileID: 2100000, guid: 1cce9e735b9964e388336484b997bb14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
