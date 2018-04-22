@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class FocusPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
 	public Button buyBtn;
+	public Button farmBtn;
+	public Button forestBtn;
 	public Game game;
 
     void Start(){
@@ -14,19 +16,24 @@ public class FocusPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
 	public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("The cursor entered the selectable UI element.");
 		game.hoveringUi(true);
     }
 
 	public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("The cursor left the selectable UI element.");
 		game.hoveringUi(false);
     }
 
 	public void ActionBuy(){
-		Debug.Log("Buy button clicked");
 		StartCoroutine(game.buyTile());
+	}
+
+	public void ActionBuyForest(){
+		StartCoroutine(game.buildTile(1));
+	}
+	
+	public void ActionBuyFarm(){
+		StartCoroutine(game.buildTile(2));
 	}
 
 }

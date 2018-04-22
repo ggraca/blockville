@@ -76,14 +76,13 @@ public class GenerateWorld : MonoBehaviour {
 		yield return request.SendWebRequest();
 
 		string s = request.downloadHandler.text;
-		//Debug.Log(s);
+		Debug.Log(s);
 		Wrapper wrapper = JsonUtility.FromJson<Wrapper>(s);
 
 		for(int i = 0; i < wrapper.tiles.Count; i++){
 			int id = wrapper.tiles[i].id;
 			int x = wrapper.tiles[i].x;
 			int y = wrapper.tiles[i].y;
-			//Debug.Log(wrapper.tiles[i].x + " " + wrapper.tiles[i].y + " " + wrapper.tiles[i].id);
 			Vector2 pos = new Vector2(x, y);
 
 			if(world[hash(pos)] != null){

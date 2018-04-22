@@ -48,21 +48,31 @@ public class Game : MonoBehaviour {
 		WWWForm form = new WWWForm();
         form.AddField("username", username);
 
-		Debug.Log("signing in");
 		UnityWebRequest request = UnityWebRequest.Post(url + "/signIn", form);
 		yield return request.SendWebRequest();
 	}
 
 	public IEnumerator buyTile(){
+		if(selectedTile == null) yield return null;
+
 		WWWForm form = new WWWForm();
         form.AddField("username", username);
 		form.AddField("x", selectedTile.x);
 		form.AddField("y", selectedTile.y);
-		Debug.Log("Creating at " + selectedTile.x + " " + selectedTile.y);
-
-		Debug.Log("Hello there");
 
 		UnityWebRequest request = UnityWebRequest.Post(url + "/occupyTile", form);
+		yield return request.SendWebRequest();
+	}
+
+	public IEnumerator buildTile(int building){
+		if(selectedTile == null) yield return null;
+
+		WWWForm form = new WWWForm();
+        form.AddField("username", username);
+		form.AddField("id", selectedTile.id);
+		form.AddField("building", building);
+
+		UnityWebRequest request = UnityWebRequest.Post(url + "/build", form);
 		yield return request.SendWebRequest();
 	}
 
@@ -72,7 +82,6 @@ public class Game : MonoBehaviour {
 		if(tile.owner == username || tile.owner == ""){
 			hoverObject.transform.position = pos;
 			hoverObject.SetActive(true);
-			Debug.Log("It's over " + tile.x + " " + tile.y);
 		}else{
 			hoverObject.SetActive(false);
 		}
@@ -89,7 +98,6 @@ public class Game : MonoBehaviour {
 			selectObject.transform.position = pos;
 			selectObject.SetActive(true);
 			selectedTile = tile;
-			Debug.Log("Selected " + tile.x + " " + tile.y);
 
 			if(tile.building == 0 && tile.owner == username){
 				buttonsGroup.SetActive(true);
