@@ -10,14 +10,30 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use(express.json());
 
+pollingData = {};
+updated = false;
+
+setInterval(function(){
+  if(updated == false){
+    ethereum.getWorld( function(r, m){
+      pollingData = {tiles: r};
+      updated = true;
+      //res.send();
+    });
+  }
+}, 3000);
+
 app.get('/', function(req, res) {
   res.send("Hello World");
 });
 
 app.post('/world', function(req, res) {
   data = req.body;
-  ethereum.getWorld(data, function(r, m){
-    res.send({tiles: r, myMoney: m});
+  ethereum.getMoney(data, function(money){
+    pollingData.myMoney = money;
+    console.log(pollingData.myMoney);
+    updated = false;
+    res.send(pollingData);
   });
 });
 
@@ -26,6 +42,7 @@ app.post('/occupyTile', function(req, res) {
   console.log(data.x, data.y, data.username);
   if('x' in data && 'y' in data && 'username' in data){
     ethereum.occupyTile(data, function(r){
+      updated = false;
       res.send(r);
     });
     res.send("OK\n");
@@ -38,6 +55,7 @@ app.post('/build', function(req, res) {
   data = req.body;
   if('building' in data && 'id' in data && 'username' in data){
     ethereum.build(data, function(r){
+      updated = false;
       res.send(r);
     });
     res.send("OK\n");

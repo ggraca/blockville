@@ -5,7 +5,7 @@ contract World {
   uint[] BUILDING_COST = [5, 30, 70, 200, 500];
   uint[] BUILDING_PROD = [5, 60, 140, 300, 1000];
   uint TILE_COST = 100;
-  uint INITIAL_MONEY = 25000;
+  uint INITIAL_MONEY = 600;
   uint COOLDOWN = 20 seconds;
 
   function setTestVar(uint x) public {
@@ -97,7 +97,12 @@ contract World {
     }
   }
 
-  function getWorld(string username) public view returns (bytes, string, int) {
+  function getMoney(string username) public returns (uint){
+    bytes32 bName = strToBytes(username);
+    return wallet[bName];
+  }
+
+  function getWorld() public view returns (bytes, string) {
     bytes memory tilesInfo = new bytes((tiles.length-1) * 5 * 32);
     bytes memory b;
     uint offset = 0;
@@ -139,13 +144,7 @@ contract World {
       offset += 32;
     }
 
-    int money = -1;
-    if(keccak256(username) != keccak256("")){
-      bytes32 bName2 = strToBytes(username);
-      money = int(wallet[bName2]);
-    }
-
-    return (tilesInfo, names, money);
+    return (tilesInfo, names);
   }
 
   event TileOccupied(string owner, int x, int y);
