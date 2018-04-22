@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 04363895acc204acb84a4a4964e2c0b9
-timeCreated: 1524350121
+guid: b7959281a0b464408bb4debb720c76fa
+timeCreated: 1524403259
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: trees
+    100000: fruit-trees
     100002: //RootNode
-    400000: trees
+    400000: fruit-trees
     400002: //RootNode
     2100000: palette
-    2300000: trees
-    3300000: trees
-    4300000: trees
-    6400000: trees
+    2300000: fruit-trees
+    3300000: fruit-trees
+    4300000: fruit-trees
+    6400000: fruit-trees
   externalObjects: {}
   materials:
     importMaterials: 1
