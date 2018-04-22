@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33884125723232194}
   - component: {fileID: 65114984828913792}
   - component: {fileID: 23537329877584012}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SelectionBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

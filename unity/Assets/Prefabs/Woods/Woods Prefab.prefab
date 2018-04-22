@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33396754807698642}
   - component: {fileID: 23981088973401432}
   - component: {fileID: 64838766829951826}
+  - component: {fileID: 114274242322041310}
   m_Layer: 0
   m_Name: Woods Prefab
   m_TagString: Tile
@@ -97,3 +98,14 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 04363895acc204acb84a4a4964e2c0b9, type: 3}
+--- !u!114 &114274242322041310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416123986717994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402855091e4d643649bdb1c56ad3b8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
