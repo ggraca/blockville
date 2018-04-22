@@ -15,7 +15,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/world', function(req, res) {
-  ethereum.getWorld(function(r){
+  data = req.body;
+  ethereum.getWorld(data, function(r){
     res.send({tiles: r});
   });
 });
@@ -39,6 +40,18 @@ app.post('/build', function(req, res) {
       res.send(r);
     });
     res.send("OK\n");
+  }else{
+    res.send("missing parameters\n");
+  }
+});
+
+app.post('/signIn', function(req, res) {
+  data = req.body;
+  if('username' in data){
+    ethereum.signIn(data, function(r){
+      res.send(r);
+    });
+    res.send("signing in\n");
   }else{
     res.send("missing parameters\n");
   }

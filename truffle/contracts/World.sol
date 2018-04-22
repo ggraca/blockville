@@ -5,7 +5,7 @@ contract World {
   uint[] BUILDING_COST = [5, 30, 70, 200, 500];
   uint[] BUILDING_PROD = [5, 60, 140, 300, 1000];
   uint TILE_COST = 100;
-  uint INITIAL_MONEY;
+  uint INITIAL_MONEY = 250;
   uint COOLDOWN = 20 seconds;
 
   function setTestVar(uint x) public {
@@ -81,10 +81,19 @@ contract World {
       c[o+i] = b[i];
     }
     return string(c);
-
   }
 
-  function getWorld() public view returns (bytes, string) {
+  function signIn(string username) public {
+    bytes32 bName = strToBytes(username);
+    if(nameToId[bName] == 0){
+      nameToId[bName] = namesCounter;
+      wallet[bName] = INITIAL_MONEY;
+      idToName[namesCounter] = username;
+      namesCounter++;
+    }
+  }
+
+  function getWorld(string username) public view returns (bytes, string, int) {
     bytes memory tilesInfo = new bytes((tiles.length-1) * 5 * 32);
     bytes memory b;
     uint offset = 0;
@@ -126,7 +135,13 @@ contract World {
       offset += 32;
     }
 
-    return (tilesInfo, names);
+    int money = -1;
+    if(keccak256(username) != keccak256("")){
+      bytes32 bName2 = strToBytes(username);
+      money = int(wallet[bName2]);
+    }
+
+    return (tilesInfo, names, money);
   }
 
   event TileOccupied(string owner, int x, int y);
@@ -140,17 +155,15 @@ contract World {
       pointToId[enc] = id; // map x,y to new id
       tiles.push(Tile(username, 0, 0, _x, _y));
     }else{
-      require(keccak256(tiles[id].owner) == keccak256("") );
+      require(keccak256(tiles[id].owner) == keccak256(""));
       tiles[id].owner = username;
       tiles[id].x = _x;
       tiles[id].y = _y;
     }
     bytes32 bName = strToBytes(username);
-    if(nameToId[bName] == 0){
-      nameToId[bName] = namesCounter;
-      idToName[namesCounter] = username;
-      namesCounter++;
-    }
+    require(nameToId[bName] != 0);
+    require(wallet[bName] >= TILE_COST);
+    wallet[bName] -= TILE_COST;
     
     //emit TileOccupied(tiles[id].owner, tiles[id].x, tiles[id].y);
     return (id);
@@ -164,5 +177,9 @@ contract World {
 
     tiles[id].building = building;
     tiles[id].readyTime = now + COOLDOWN;
+
+    bytes32 bName = strToBytes(username);
+    require(wallet[bName] >= BUILDING_COST[building]);
+    wallet[bName] -= BUILDING_COST[building];
   }
 }
