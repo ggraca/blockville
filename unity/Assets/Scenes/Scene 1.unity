@@ -324,7 +324,7 @@ MonoBehaviour:
   - {fileID: 1822728527299240, guid: 62681f8679db342f1ac5f78a2db8ee39, type: 2}
   - {fileID: 1599057427648122, guid: d9aff3b71715549e88cabeccc07fe3d3, type: 2}
   - {fileID: 1783976757498712, guid: 3fc9bf99cbb744137af7049599dd6c40, type: 2}
-  url: http://af354e22.ngrok.io
+  url: https://4a2e61f7.ngrok.io
   refreshCooldown: 1
   game: {fileID: 1845399824}
   tileWidth: 16
@@ -646,8 +646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyBtn: {fileID: 1774179558}
-  farmBtn: {fileID: 1150496333}
-  forestBtn: {fileID: 1736123487}
+  farmBtn: {fileID: 1736123487}
+  forestBtn: {fileID: 1150496333}
   mineBtn: {fileID: 93495420}
   game: {fileID: 1845399824}
 --- !u!1 &568491284
@@ -1961,7 +1961,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1985,14 +1985,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785121903}
-  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -20, y: 20, z: -20}
+  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: -20, y: 30, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 371167615}
   m_Father: {fileID: 1317961696}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!114 &1785121908
 MonoBehaviour:
   m_ObjectHideFlags: 0
