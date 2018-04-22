@@ -43,6 +43,10 @@ contract World {
 
   constructor() public{
     tiles.push(Tile("", 0, 0, -2000, -2000));
+    touchTile(0, 0);
+    touchTile(0, 1);
+    touchTile(1, 0);
+    touchTile(1, 1);
   }
 
   function _encodePoint(int _x, int _y) internal pure returns (int) {
@@ -146,6 +150,16 @@ contract World {
 
   event TileOccupied(string owner, int x, int y);
 
+  function touchTile(int _x, int _y) internal {
+    int enc = _encodePoint(_x, _y);
+    uint id = pointToId[enc];
+    if(id == 0){ // tile does not exist
+      id = tiles.length; // generate tile id
+      pointToId[enc] = id; // map x,y to new id
+      tiles.push(Tile("", 0, 0, _x, _y));
+    }
+  }
+
   function occupyTile(string username, int _x, int _y) public returns(uint) {
     require(keccak256(username) != keccak256(""));
     int enc = _encodePoint(_x, _y); // encode x,y into one value
@@ -164,7 +178,12 @@ contract World {
     require(nameToId[bName] != 0);
     require(wallet[bName] >= TILE_COST);
     wallet[bName] -= TILE_COST;
-    
+
+    touchTile(_x+1, _y);
+    touchTile(_x, _y+1);
+    touchTile(_x-1, _y);
+    touchTile(_x, _y-1);
+
     //emit TileOccupied(tiles[id].owner, tiles[id].x, tiles[id].y);
     return (id);
     
