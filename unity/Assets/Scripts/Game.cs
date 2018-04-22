@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 
 public class Game : MonoBehaviour {
 
-	public GameObject selector;
+	public GameObject selectObject;
+	public GameObject hoverObject;
 	public GameObject dimmer;
 	public InputField inputField;
 	public string username;
@@ -15,8 +16,10 @@ public class Game : MonoBehaviour {
 	void Start() {
 		url = GameObject.Find("Floor").GetComponent<GenerateWorld>().url;
 
-		selector = (GameObject) Instantiate(selector, new Vector3(0, 50, 0), Quaternion.identity);
-		selector.SetActive(false);
+		selectObject = (GameObject) Instantiate(selectObject, new Vector3(0, 50, 0), Quaternion.identity);
+		selectObject.SetActive(false);
+		hoverObject = (GameObject) Instantiate(hoverObject, new Vector3(0, 50, 0), Quaternion.identity);
+		hoverObject.SetActive(false);
 
 		if(username == ""){
 			dimmer.SetActive (true);
@@ -41,12 +44,21 @@ public class Game : MonoBehaviour {
 		yield return request.SendWebRequest();
 	}
 
+	public void hover(Vector3 pos) {
+		hoverObject.transform.position = pos;
+		hoverObject.SetActive(true);
+	}
+
+	public void hanghover() {
+		hoverObject.SetActive(false);
+	}
+
 	public void select(Vector3 pos) {
-		selector.transform.position = pos;
-		selector.SetActive(true);
+		selectObject.transform.position = pos;
+		selectObject.SetActive(true);
 	}
 
 	public void unselect() {
-		selector.SetActive(false);
+		selectObject.SetActive(false);
 	}
 }

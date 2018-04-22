@@ -9,11 +9,15 @@ public class TileObject : MonoBehaviour {
 		game = GameObject.Find("Game/Canvas").GetComponent<Game>();
 	}
 
-	void OnMouseEnter() {
+    void OnMouseDown() {
         game.select(transform.position);
     }
 
+	void OnMouseEnter() {
+        game.hover(transform.position);
+    }
+
     void OnMouseExit() {
-        game.unselect();
+        game.hanghover();
     }
 }
