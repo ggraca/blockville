@@ -12,6 +12,8 @@ var provider = new Web3.providers.HttpProvider("http://localhost:9545");
 var World = contract(WorldJSON);
 World.setProvider(provider);
 
+var world;
+
 // Use Truffle as usual
 World.deployed().then(function(instance) {
   //console.log(World);
@@ -23,6 +25,8 @@ World.deployed().then(function(instance) {
     
   });*/
 
+  world = instance;
+
   return instance.getTestVar.call()
 }).then(function(result) {
     console.log(result, result.logs);
@@ -31,3 +35,7 @@ World.deployed().then(function(instance) {
     console.log(error);
 }); 
 
+
+function occupyLand() {
+  console.log("everything ok here");
+}

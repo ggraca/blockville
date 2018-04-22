@@ -10,7 +10,7 @@ truffle develop 	# should be kept open
 > migrate			# after compiling, run 'migrate --reset' if the command failed
 
 # some checks:
-truffle(develop)> World.deployed().then(function(instance){return instance.getTestVar.call();}).then(function(value){return value.toNumber()}); // returns 0
-truffle(develop)> World.deployed().then(function(instance){return instance.setTestVar(4);}); 													// returns garbage
-truffle(develop)> World.deployed().then(function(instance){return instance.getTestVar.call();}).then(function(value){return value.toNumber()}); // now returns 4
+World.deployed().then(function(instance){return instance.getTestVar.call();}).then(function(value){return value.toNumber()}); 	// returns 0
+World.deployed().then(function(instance){return instance.setTestVar(4);}); 														// returns garbage
+World.deployed().then(function(instance){return instance.getTestVar.call();}).then(function(value){return value.toNumber()}); 	// now returns 4
 
