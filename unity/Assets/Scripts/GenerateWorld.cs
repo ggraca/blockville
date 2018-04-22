@@ -46,7 +46,7 @@ public class GenerateWorld : MonoBehaviour {
 	}
 	
 	IEnumerator GetWorld() {
-		UnityWebRequest request = UnityWebRequest.Get(url);        
+		UnityWebRequest request = UnityWebRequest.Get(url + "/world");        
 		yield return request.SendWebRequest();
 
 		string s = request.downloadHandler.text;
@@ -71,6 +71,7 @@ public class GenerateWorld : MonoBehaviour {
 
 		int x = tile.x * (tileWidth + tileSpacing);
 		int z = tile.y * (tileWidth + tileSpacing);
+		int rotationMultiplier = Random.Range(0, 3);
 		int building = tile.building;
 
 		// Set building
@@ -87,6 +88,7 @@ public class GenerateWorld : MonoBehaviour {
 
 		border = Instantiate(border_p, new Vector3(x, 0, z), Quaternion.identity);
 		go = Instantiate(p, new Vector3(x, 0, z), Quaternion.identity);
+		//go.transform.Rotate(0, rotationMultiplier*90, 0);
 		border.transform.parent = go.transform;
 		
 		return go;
