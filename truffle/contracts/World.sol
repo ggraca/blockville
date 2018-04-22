@@ -2,6 +2,11 @@ pragma solidity ^0.4.17;
 
 contract World {
   uint testVar;
+  uint[] BUILDING_COST = [5, 30, 70, 200, 500];
+  uint[] BUILDING_PROD = [5, 60, 140, 300, 1000];
+  uint TILE_COST = 100;
+  uint INITIAL_MONEY;
+  uint COOLDOWN = 20 seconds;
 
   function setTestVar(uint x) public {
     testVar = x;
@@ -30,7 +35,9 @@ contract World {
 
   mapping (int => uint) public pointToId; // maps coordinates to tile id
   mapping (bytes32 => uint) public nameToId; // maps username to user id
+  mapping (bytes32 => uint) public wallet; // maps username to money
   mapping (uint => string)  public idToName; // maps user id to username
+
   Tile[] public tiles;
   uint namesCounter = 1;
 
@@ -124,7 +131,7 @@ contract World {
 
   event TileOccupied(string owner, int x, int y);
 
-  function occupyTile(string username, int _x, int _y) public returns(uint, int, uint) {
+  function occupyTile(string username, int _x, int _y) public returns(uint) {
     require(keccak256(username) != keccak256(""));
     int enc = _encodePoint(_x, _y); // encode x,y into one value
     uint id = pointToId[enc]; // get id of the tile, if it exists
@@ -133,6 +140,7 @@ contract World {
       pointToId[enc] = id; // map x,y to new id
       tiles.push(Tile(username, 0, 0, _x, _y));
     }else{
+      require(keccak256(tiles[id].owner) == keccak256("") );
       tiles[id].owner = username;
       tiles[id].x = _x;
       tiles[id].y = _y;
@@ -145,7 +153,16 @@ contract World {
     }
     
     //emit TileOccupied(tiles[id].owner, tiles[id].x, tiles[id].y);
-    return (id, _x, tiles.length);
+    return (id);
     
+  }
+
+  function build(string username, uint id, uint building) public {
+    require(id != 0);
+    require(keccak256(username) != keccak256(""));
+    require(keccak256(username) == keccak256(tiles[id].owner));
+
+    tiles[id].building = building;
+    tiles[id].readyTime = now + COOLDOWN;
   }
 }

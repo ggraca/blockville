@@ -15,14 +15,29 @@ app.get('/', function(req, res) {
 });
 
 app.get('/world', function(req, res) {
-  ethereum.getWorld();
-  res.send("OK\n");
+  ethereum.getWorld(function(r){
+    res.send({tiles: r});
+  });
 });
 
 app.post('/occupyTile', function(req, res) {
-  data = req.body
-  if(data.x && data.y && data.username){
-    ethereum.occupyTile(data);
+  data = req.body;
+  if('x' in data && 'y' in data && 'username' in data){
+    ethereum.occupyTile(data, function(r){
+      res.send(r);
+    });
+    res.send("OK\n");
+  }else{
+    res.send("missing parameters\n");
+  }
+});
+
+app.post('/build', function(req, res) {
+  data = req.body;
+  if('building' in data && 'id' in data && 'username' in data){
+    ethereum.build(data, function(r){
+      res.send(r);
+    });
     res.send("OK\n");
   }else{
     res.send("missing parameters\n");

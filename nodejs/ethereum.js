@@ -44,10 +44,9 @@ function decodeIntList(s){
   return l;
 }
 
-function getWorld(data) {
+function getWorld(callback) {
   console.log("everything ok here");
 
-  //r = world.occupyTile.call(data.username, data.x, data.y);
   world.getWorld.call().then(
     function(result){
       var tiles = [];
@@ -65,35 +64,28 @@ function getWorld(data) {
           id: id,
           x: x,
           y: y,
-          username: owners[i/5],
+          owner: owners[i/5],
           building: building
         });
       }
       console.log(tiles);
+      callback(tiles);
     });
-
 }
 
 var account = "0x627306090abab3a6e1400e9345bc60c78a8bef57";
 
-function occupyTile(data) {
+function occupyTile(data, callback) {
   console.log("everything ok here");
-  r = world.occupyTile(data.username, data.x, data.y, {from: account, gas:3000000});//.then(function(result){console.log(result)}).then(function(error){console.log(error)});
-  console.log(r);
+  world.occupyTile(data.username, data.x, data.y, {from: account, gas:3000000});//.then(function(result){console.log(result)}).then(function(error){console.log(error)});
+}
 
-  /*World.deployed().then(function(instance) {
-    console.log(r);
-  }).then(function(result) {
-      console.log(result);
-  }, function(error) {
-      console.log(error);
-  });*/
-
-  //r = world.occupyTile.call(data.username, data.x, data.y);
-  //r = world.getTestVar.call();
+function build(data) {
+  world.build(data.username, data.id, data.building, {from: account, gas:3000000});
 }
 
 module.exports = {
   "occupyTile": occupyTile,
-  "getWorld": getWorld
+  "getWorld": getWorld,
+  "build": build
 }
