@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 [System.Serializable]
@@ -15,6 +16,7 @@ public class Tile {
 [System.Serializable]
 public class Wrapper {
    public List<Tile> tiles;
+   public int myMoney;
 }
 
 public class GenerateWorld : MonoBehaviour {
@@ -30,11 +32,27 @@ public class GenerateWorld : MonoBehaviour {
 	public Game game;
 	public int tileWidth = 16;
 	public int tileSpacing = 4;
+	public int gameWidth = 25;
+	public int gameHeight = 25;
+	public Text fundsTxt;
 	
 	void Start () {
 		game = game.GetComponent<Game>();
 		world = new Hashtable();
 		nextCall = Time.time + refreshCooldown;
+
+		for(int x = -gameWidth; x<=gameWidth; x++){
+			for(int y = -gameHeight; y<=gameHeight; y++){
+				Tile t = new Tile();
+				t.x = x;
+				t.y = y;
+				t.building = 0;
+				GameObject tile = GenerateTile(t);
+				Vector2 pos = new Vector2(x, y);
+				world[hash(pos)] = tile;
+			}
+		}
+		
 		StartCoroutine(GetWorld());
 	}
 
@@ -44,26 +62,40 @@ public class GenerateWorld : MonoBehaviour {
 			StartCoroutine(GetWorld());
 		}
 	}
+
+	int hash(Vector2 v){
+		return Mathf.RoundToInt(v.x) * 10000 + Mathf.RoundToInt(v.y);
+	}
 	
 	IEnumerator GetWorld() {
-		UnityWebRequest request = UnityWebRequest.Get(url + "/world");        
+		WWWForm form = new WWWForm();
+        form.AddField("username", game.username);
+
+		UnityWebRequest request = UnityWebRequest.Post(url + "/world", form);
 		yield return request.SendWebRequest();
 
 		string s = request.downloadHandler.text;
+		//Debug.Log(s);
 		Wrapper wrapper = JsonUtility.FromJson<Wrapper>(s);
 
 		for(int i = 0; i < wrapper.tiles.Count; i++){
 			int id = wrapper.tiles[i].id;
+			int x = wrapper.tiles[i].x;
+			int y = wrapper.tiles[i].y;
+			//Debug.Log(wrapper.tiles[i].x + " " + wrapper.tiles[i].y + " " + wrapper.tiles[i].id);
+			Vector2 pos = new Vector2(x, y);
 
-			if(world[id] != null){
-				GameObject o = (GameObject) world[id];
-				world.Remove(id);
+			if(world[hash(pos)] != null){
+				GameObject o = (GameObject) world[hash(pos)];
+				world.Remove(pos);
 				Destroy(o);
 			}
 
 			GameObject tile = GenerateTile(wrapper.tiles[i]);
-			world.Add(id, tile);	
+			world[hash(pos)] = tile;
 		}
+
+		fundsTxt.text = wrapper.myMoney.ToString();
 	}
 
 	GameObject GenerateTile(Tile tile){
@@ -88,6 +120,8 @@ public class GenerateWorld : MonoBehaviour {
 
 		border = Instantiate(border_p, new Vector3(x, 0, z), Quaternion.identity);
 		go = Instantiate(p, new Vector3(x, 0, z), Quaternion.identity);
+		TileObject to = p.GetComponent<TileObject>();
+		to.tileProperties = tile;
 		//go.transform.Rotate(0, rotationMultiplier*90, 0);
 		border.transform.parent = go.transform;
 		

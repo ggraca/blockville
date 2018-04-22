@@ -5,7 +5,7 @@ contract World {
   uint[] BUILDING_COST = [5, 30, 70, 200, 500];
   uint[] BUILDING_PROD = [5, 60, 140, 300, 1000];
   uint TILE_COST = 100;
-  uint INITIAL_MONEY = 250;
+  uint INITIAL_MONEY = 25000;
   uint COOLDOWN = 20 seconds;
 
   function setTestVar(uint x) public {

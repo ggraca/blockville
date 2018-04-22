@@ -14,15 +14,16 @@ app.get('/', function(req, res) {
   res.send("Hello World");
 });
 
-app.get('/world', function(req, res) {
+app.post('/world', function(req, res) {
   data = req.body;
-  ethereum.getWorld(data, function(r){
-    res.send({tiles: r});
+  ethereum.getWorld(data, function(r, m){
+    res.send({tiles: r, myMoney: m});
   });
 });
 
 app.post('/occupyTile', function(req, res) {
   data = req.body;
+  console.log(data.x, data.y, data.username);
   if('x' in data && 'y' in data && 'username' in data){
     ethereum.occupyTile(data, function(r){
       res.send(r);
@@ -46,14 +47,15 @@ app.post('/build', function(req, res) {
 });
 
 app.post('/signIn', function(req, res) {
+  console.log("signing in");
   data = req.body;
   if('username' in data){
+    console.log("ok");
     ethereum.signIn(data, function(r){
       res.send(r);
     });
-    res.send("signing in\n");
   }else{
-    res.send("missing parameters\n");
+    console.log("missing parameters\n");
   }
 });
 

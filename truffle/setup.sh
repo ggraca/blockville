@@ -18,12 +18,12 @@ curl -d '{"username":"ines", "x":3, "y":2}' -H "Content-Type: application/json" 
 curl -d '{"username":"ines", "x":3, "y":3}' -H "Content-Type: application/json" -X POST http://localhost:3000/occupyTile
 
 
-curl -d '{"username":"michel", "building": 1, "id":1}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
-curl -d '{"username":"michel", "building": 2, "id":2}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
+#curl -d '{"username":"michel", "building": 1, "id":1}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
+#curl -d '{"username":"michel", "building": 2, "id":2}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
 curl -d '{"username":"graca", "building": 1, "id":5}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
 curl -d '{"username":"graca", "building": 2, "id":6}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
-curl -d '{"username":"graca", "building": 2, "id":7}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
-curl -d '{"username":"ines", "building": 1, "id":9}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
-curl -d '{"username":"ines", "building": 2, "id":10}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
+curl -d '{"username":"graca", "building": 1, "id":7}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
+#curl -d '{"username":"ines", "building": 1, "id":9}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
+#curl -d '{"username":"ines", "building": 2, "id":10}' -H "Content-Type: application/json" -X POST http://localhost:3000/build
 
-curl -H "Content-Type: application/json" -X GET http://localhost:3000/world
+curl -d '{"username":"graca"}' -H "Content-Type: application/json" -X POST http://localhost:3000/world

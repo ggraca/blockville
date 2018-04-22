@@ -73,7 +73,7 @@ function getWorld(data, callback) {
         });
       }
       console.log(tiles);
-      callback(tiles);
+      callback(tiles, result[2]);
     });
 }
 
