@@ -46,6 +46,7 @@ public class GenerateWorld : MonoBehaviour {
 				Tile t = new Tile();
 				t.x = x;
 				t.y = y;
+				t.owner = "";
 				t.building = 0;
 				GameObject tile = GenerateTile(t);
 				Vector2 pos = new Vector2(x, y);
@@ -120,7 +121,7 @@ public class GenerateWorld : MonoBehaviour {
 
 		border = Instantiate(border_p, new Vector3(x, 0, z), Quaternion.identity);
 		go = Instantiate(p, new Vector3(x, 0, z), Quaternion.identity);
-		TileObject to = p.GetComponent<TileObject>();
+		TileObject to = go.GetComponent<TileObject>();
 		to.tileProperties = tile;
 		//go.transform.Rotate(0, rotationMultiplier*90, 0);
 		border.transform.parent = go.transform;
