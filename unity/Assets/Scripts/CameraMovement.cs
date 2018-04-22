@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
+	float speed = 50;
 	void FixedUpdate () {
 		if(Input.GetAxis("Vertical") > 0) {
-			transform.position = transform.position + transform.forward + transform.right;
+			transform.position = transform.position + (transform.forward + transform.right) * Time.deltaTime * speed;
 		}
 		else if(Input.GetAxis("Vertical") < 0) {
-			transform.position = transform.position - transform.forward - transform.right;
+			transform.position = transform.position + (- transform.forward - transform.right) * Time.deltaTime * speed;
 		}
 		if(Input.GetAxis("Horizontal") > 0) {
-			transform.position = transform.position - transform.forward + transform.right;
+			transform.position = transform.position + (- transform.forward + transform.right) * Time.deltaTime * speed;
 		}
 		else if(Input.GetAxis("Horizontal") < 0) {
-			transform.position = transform.position + transform.forward - transform.right;
+			transform.position = transform.position + (transform.forward - transform.right) * Time.deltaTime * speed;
 		}
 
 		if(Input.GetKeyDown("q")) {
